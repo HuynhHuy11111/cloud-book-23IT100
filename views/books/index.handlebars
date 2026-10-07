@@ -1,0 +1,169 @@
+<div class="container">
+
+    <h1>QUẢN LÝ SÁCH</h1>
+
+    <div class="info-box">
+
+        <p>
+            MSSV:
+            <strong>{{MSSV}}</strong>
+        </p>
+
+        <p>
+            Mã sản phẩm phải bắt đầu bằng:
+            <strong>{{PREFIX}}</strong>
+        </p>
+
+        <p>
+            VAT áp dụng:
+            <strong>{{VAT_RATE}}%</strong>
+        </p>
+
+    </div>
+
+
+    <h2>Thêm sách mới</h2>
+
+    <form
+        action="/books"
+        method="POST"
+    >
+
+        <label>
+            Mã sản phẩm
+        </label>
+
+        <input
+            type="text"
+            name="productCode"
+            placeholder="Ví dụ: {{PREFIX}}BOOK001"
+            required
+        >
+
+
+        <label>
+            Tên sách
+        </label>
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Nhập tên sách"
+            required
+        >
+
+
+        <label>
+            Giá trước VAT
+        </label>
+
+        <input
+            type="number"
+            name="price"
+            min="0"
+            placeholder="Ví dụ: 100000"
+            required
+        >
+
+
+        <button type="submit">
+            Thêm sách
+        </button>
+
+    </form>
+
+
+    <hr>
+
+
+    <h2>Danh sách sách</h2>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Mã sản phẩm</th>
+
+                <th>Tên sách</th>
+
+                <th>Giá trước VAT</th>
+
+                <th>VAT</th>
+
+                <th>Giá sau VAT</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {{#each books}}
+
+            <tr>
+
+                <td>
+                    {{this.productCode}}
+                </td>
+
+                <td>
+                    {{this.name}}
+                </td>
+
+                <td>
+                    {{this.priceBeforeVAT}}
+                </td>
+
+                <td>
+                    {{this.vatRate}}%
+                </td>
+
+                <td>
+                    {{this.priceAfterVAT}}
+                </td>
+
+            </tr>
+
+            {{else}}
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    style="text-align:center;"
+                >
+                    Chưa có sách nào.
+                </td>
+
+            </tr>
+
+            {{/each}}
+
+        </tbody>
+
+    </table>
+
+
+    <footer>
+
+        <p>
+            Họ tên:
+            <strong>{{FULL_NAME}}</strong>
+        </p>
+
+        <p>
+            MSSV:
+            <strong>{{MSSV}}</strong>
+        </p>
+
+        <p>
+            VAT áp dụng:
+            <strong>{{VAT_RATE}}%</strong>
+        </p>
+
+    </footer>
+
+</div>
